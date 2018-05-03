@@ -87,6 +87,7 @@
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
       var row = this.get(rowIndex);
+// console.log('Andy is the best!');
 
       var sum = row.reduce((acc, curr) => acc + curr, 0);
       // console.log(sum)
@@ -199,7 +200,7 @@
       
       var n = this.get('n');
 
-      for (var i = -n+2; i < n; i++) {
+      for (var i = -n+1; i < n; i++) {
         if (this.hasMajorDiagonalConflictAt(i)) {
           return true;
         }
@@ -219,13 +220,13 @@
       var rows = this.rows();
       var sum = 0;
   
-      for (var i = rows.length; i < 0; i--) {
-        var val = rows[i][majorDiagonalColumnIndexAtFirstRow];      
+      for (var i = 0; i < rows.length; i++) {
+        var val = rows[i][minorDiagonalColumnIndexAtFirstRow];      
         if (val !== undefined) {
           sum += val;
         } 
   
-        majorDiagonalColumnIndexAtFirstRow--
+        minorDiagonalColumnIndexAtFirstRow--
       }
 
       if (sum < 2) {
@@ -238,8 +239,10 @@
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
       var n = this.get('n');
+      // debugger;
+      for (var i = 2*n+3; i > 0; i--) {
+        // console.log('( i: ', i, ') = ', this.hasMinorDiagonalConflictAt(i))
 
-      for (var i = n+1; i < 1; i--) {
         if (this.hasMinorDiagonalConflictAt(i)) {
           return true;
         }
